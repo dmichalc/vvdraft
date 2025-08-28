@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart - Basic Store</title>
+    <link rel="icon" type="ico" href="image/uphlgooseicon.ico">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+
+</head>
+<body class="hero-image">
+    <header>
+           
+        <nav>
+            <a href="index.html"><img src="image/vkcalogo.png" alt="Vera's Pioneer Cookbook Logo"/></a>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="store.html">Store</a></li>
+            </ul>
+        
+  
+            <div>Cart Items: <span id="cart-count">0</span></div>
+            <a href="store.html" class="cart-link">Back to Store</a>
+        </nav>
+    </header>
+   
+      
+        <div class="hero-text">
+          <h1>Vera's Pioneer Cookbook</h1>
+            
+        </div>
+<main>
+
+        <section id="cart-section" class="cart-section">
+            <h2>Your Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div id="cart-summary">
+                <div id="cart-total">
+                    <strong>Total: $<span id="total-amount">0.00</span></strong>
+                </div>
+                <div id="cart-actions">
+                    <button id="clear-cart" class="btn btn-secondary">Clear Cart</button>
+                    <button id="checkout" class="btn btn-primary">Checkout</button>
+                </div>
+            </div>
+            <div id="empty-cart" style="display: none;">
+                <p>Your cart is empty.</p>
+                <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Basic Store</p>
+    </footer>
+    <script>
+        // Cart functionality for shopping cart page
+        document.addEventListener("DOMContentLoaded", () => {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cartCount = document.getElementById("cart-count");
+            const totalAmount = document.getElementById("total-amount");
+            const emptyCartMessage = document.getElementById("empty-cart");
+            const cartSection = document.getElementById("cart-section");
+
+            function updateCartDisplay() {
+                // Update cart count
+                cartCount.textContent = cart.length;
+
+                // Clear existing items
+                cartItemsContainer.innerHTML = "";
+
+                if (cart.length === 0) {
+                    // Show empty cart message
+                    cartSection.style.display = "none";
+                    emptyCartMessage.style.display = "block";
+                    return;
+                }
+
+                // Show cart section
+                cartSection.style.display = "block";
+                emptyCartMessage.style.display = "none";
+
+                let total = 0;
+
+                // Group items by id to show quantities
+                const itemCounts = {};
+                cart.forEach(item => {
+                    const key = item.id || item.name;
+                    if (itemCounts[key]) {
+                        itemCounts[key].quantity += 1;
+                    } else {
+                        itemCounts[key] = { ...item, quantity: 1 };
+                    }
+                });
+
+                // Display grouped items
+                Object.values(itemCounts).forEach((item, index) => {
+                    const itemDiv = document.createElement("div");
+                    itemDiv.className = "cart-item";
+                    itemDiv.innerHTML = `
+                        <div class="item-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.description}</p>
+                            <p class="item-price">$${item.price.toFixed(2)} each</p>
+                        </div>
+                        <div class="item-controls">
+                            <div class="quantity-controls">
+                                <button class="qty-btn" data-action="decrease" data-item="${item.id || item.name}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="qty-btn" data-action="increase" data-item="${item.id || item.name}">+</button>
+                            </div>
+                            <div class="item-total">
+                                <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
+                            </div>
+                            <button class="remove-btn" data-item="${item.id || item.name}">Remove</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemDiv);
+                    total += item.price * item.quantity;
+                });
+
+                // Update total
+                totalAmount.textContent = total.toFixed(2);
+            }
+
+            function updateCart() {
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartDisplay();
+            }
+
+            // Event listeners for cart actions
+            cartItemsContainer.addEventListener("click", (e) => {
+                const itemId = e.target.dataset.item;
+                
+                if (e.target.classList.contains("qty-btn")) {
+                    const action = e.target.dataset.action;
+                    
+                    if (action === "increase") {
+                        // Find the item in cart and add one more
+                        const cartItem = cart.find(item => (item.id || item.name) === itemId);
+                        if (cartItem) {
+                            cart.push({...cartItem});
+                        }
+                    } else if (action === "decrease") {
+                        // Remove one instance of the item
+                        const itemIndex = cart.findIndex(item => (item.id || item.name) === itemId);
+                        if (itemIndex !== -1) {
+                            cart.splice(itemIndex, 1);
+                        }
+                    }
+                    updateCart();
+                } else if (e.target.classList.contains("remove-btn")) {
+                    // Remove all instances of this item
+                    for (let i = cart.length - 1; i >= 0; i--) {
+                        if ((cart[i].id || cart[i].name) === itemId) {
+                            cart.splice(i, 1);
+                        }
+                    }
+                    updateCart();
+                }
+            });
+
+            // Clear cart button
+            document.getElementById("clear-cart").addEventListener("click", () => {
+                if (confirm("Are you sure you want to clear your cart?")) {
+                    cart.length = 0;
+                    updateCart();
+                }
+            });
+
+            // Checkout button
+            document.getElementById("checkout").addEventListener("click", () => {
+                if (cart.length === 0) {
+                    alert("Your cart is empty!");
+                    return;
+                }
+                alert(`Thank you for your purchase! Total: $${document.getElementById("total-amount").textContent}`);
+                cart.length = 0;
+                updateCart();
+            });
+
+            // Initial display update
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

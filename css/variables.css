@@ -1,0 +1,24 @@
+/* CSS HEX */
+:root {
+  --vbittersweet: #fa5e5eff;
+  --vblack: #272932ff;
+  --vwhite: #e6e8e6ff;
+  --vblue-crayola: #3772ffff;
+  --vsunglow: #fdca40ff;
+}   
+
+
+
+
+
+/* SCSS Gradient 
+$gradient-top: linear-gradient(0deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-right: linear-gradient(90deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-bottom: linear-gradient(180deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-left: linear-gradient(270deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-top-right: linear-gradient(45deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-bottom-right: linear-gradient(135deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-top-left: linear-gradient(225deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-bottom-left: linear-gradient(315deg, #fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+$gradient-radial: radial-gradient(#fa5e5eff, #272932ff, #e6e8e6ff, #3772ffff, #fdca40ff);
+*/

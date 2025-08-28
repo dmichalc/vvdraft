@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Merienda:wght@300..900&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,800;1,6..72,400&display=swap');
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+.hurricane-regular {
+    font-family: "Hurricane", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+.hurricane-italic {
+        font-family: "Hurricane", cursive;
+        font-weight: 400;
+        font-style: italic;
+    }  
+.hurricane-bold {
+        font-family: "Hurricane", cursive;
+        font-weight: 700;
+        font-style: normal;
+    }
+.tangerine-regular {
+        font-family: "Tangerine", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+      
+      .tangerine-bold {
+        font-family: "Tangerine", cursive;
+        font-weight: 700;
+        font-style: normal;
+      }
+ul {
+    background-color: var(--vbittersweet);
+    border-radius: 40rem;
+    gap: 13%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 89%;
+    margin-right: 5%;
+    height: 3%;
+    padding: 2rem;
+}
+li {
+  list-style-type: none;   
+  display: inline;
+    margin: 1px, 2px, 1px, 2px;
+    padding: 1px, 2px, 1px, 2px;
+}
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+    padding: 1rem;
+    margin: 1, 1, 1, 0;
+    /*   color: var(--color-light); */
+  }
+
+h1 {
+    font-family: "hurricane", cursive;
+    font-size: 11em;
+    font-weight: 900;
+    margin: auto;
+    z-index: 1;
+    width: 100%;
+    padding: .1rem;
+    text-align: center;
+  }
+  h2 {
+    font-family: "hurricane", serif;
+    font-size: 5rem;
+    margin: auto;
+    width: 100%;
+    padding: 1px;
+    text-align: center;
+  }
+  h3 {
+    font-family: "Newsreader", serif;
+    font-size: 4rem;
+    margin: auto;
+    width: 60%;
+    padding: 1px;
+    text-align: center;
+  }
+   h4 {
+    font-family: "Newsreader", serif;
+    font-size: 3.8rem;
+    margin: auto;
+    width: 60%;
+    padding: 1px;
+    text-align: center;
+  }
+   h5 {
+    font-family: "Newsreader", serif;
+    font-size: 3rem;
+    margin: auto;
+    width: 60%;
+    padding: 1px;
+    text-align: center;
+  }
+  nav p {
+    font-family: "Newsreader", serif;
+    font-size: 1rem;
+    margin: 1rem;
+    color: var(--vbittersweet);
+  }
+p {
+    font-family: "Newsreader", serif;
+    font-size: 2.6rem;
+    margin: .1rem;
+    color: var(--vwhite);
+  }
+h4 {
+    font-family: "Newsreader", serif;
+    font-size: 3rem;
+    margin: .1rem;
+  }
+
+  a {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: none;
+    font-size: .1rem;
+  }
+  footer p {
+    font-family: "Newsreader", serif;
+    font-size: 1rem;
+    margin: 1rem;
+    color: var(--vwhite);
+  }
+  form label {
+    font-size: 2rem;
+    font-family: "Tangerine", cursive;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
